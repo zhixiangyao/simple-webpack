@@ -1,0 +1,21 @@
+{
+  "name": "mini-webpack",
+  "version": "1.0.0",
+  "description": "mini webpack demo",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "node ./mini-webpack.js"
+  },
+  "keywords": [
+    "webpack"
+  ],
+  "author": "yaozhixiang",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.14.3",
+    "@babel/parser": "^7.14.4",
+    "@babel/traverse": "^7.14.2",
+    "webpack": "^5.38.1",
+    "webpack-cli": "^4.7.0"
+  }
+}
