@@ -5,8 +5,13 @@ const traverse = require('@babel/traverse').default
 const babel = require('@babel/core')
 
 // 保存根路径，所有模块根据根路径产出相对路径
-let root = process.cwd()
+const root = process.cwd()
 
+/**
+ * 读取模块信息
+ * @param {string} filePath
+ * @return {{code: string, deps: string[], filePath: string}}
+ */
 function readModuleInfo(filePath) {
   // 准备好相对路径作为 module 的 key
   filePath = './' + path.relative(root, path.resolve(filePath)).replace(/\\+/g, '/')
@@ -41,6 +46,11 @@ function readModuleInfo(filePath) {
   }
 }
 
+/**
+ * 构建依赖图
+ * @param {string} entry
+ * @returns {{code: string, deps: string[], filePath: string}[]}
+ */
 function buildDependencyGraph(entry) {
   // 获取入口模块信息
   const entryInfo = readModuleInfo(entry)
@@ -49,19 +59,16 @@ function buildDependencyGraph(entry) {
   graphArr.push(entryInfo)
   // 从入口模块触发，递归地找每个模块的依赖，并将每个模块信息保存到 graphArr
   for (const module of graphArr) {
-    module.deps.forEach(depPath => {
-      const moduleInfo = readModuleInfo(path.resolve(depPath))
-      graphArr.push(moduleInfo)
-    })
+    module.deps.forEach(depPath => graphArr.push(readModuleInfo(path.resolve(depPath))))
   }
   return graphArr
 }
 
 /**
- *
- * @param {Array<{code: string, filePath: string}>} graph
- * @param {*} entry
- * @returns
+ * 打包
+ * @param {{code: string, filePath: string}[]} graph
+ * @param {string} entry
+ * @returns {string}
  */
 function pack(graph, entry) {
   const moduleArr = graph.map(module => {
