@@ -1,10 +1,10 @@
 {
-  "name": "mini-webpack",
+  "name": "simple-webpack",
   "version": "1.0.0",
   "description": "mini webpack demo",
   "main": "dist/index.js",
   "scripts": {
-    "build": "node ./mini-webpack.js"
+    "build": "node ./simple-webpack.js"
   },
   "keywords": [
     "webpack"
