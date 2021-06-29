@@ -1,7 +1,7 @@
 {
   "name": "simple-webpack",
   "version": "1.0.0",
-  "description": "mini webpack demo",
+  "description": "simple webpack demo",
   "main": "dist/index.js",
   "scripts": {
     "build": "node ./simple-webpack.js"
