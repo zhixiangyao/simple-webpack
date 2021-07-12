@@ -9,7 +9,7 @@
   "keywords": [
     "webpack"
   ],
-  "author": "yao-zhixiang",
+  "author": "zhixiangyao",
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.14.3",
